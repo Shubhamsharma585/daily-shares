@@ -1,30 +1,14 @@
-import { Image, Text, View, StyleSheet, Platform } from 'react-native';
-import { auth } from "../../firebase/config";
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useState } from "react";
+import { Text, View, StyleSheet, Platform } from 'react-native';
+import Auth from "../../components/Auth/Auth";
 
 
 export default function HomeScreen() {
 
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-
-  const signIn = async (email:any, password: any) => {
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log('User signed in:', user);
-    } catch (error) {
-      console.error('Error signing in:', error);
-    }
-  };
 
   return (
-    <View >
-        <Text style={{color:"orangered"}}>RSS</Text>
-        <input onChange={(e) => setEmail(e.target.value)}/>
-        <input onChange={(e) => setPass(e.target.value)}/>
-        <h1 onClick={() => signIn(email, pass)}>Signin</h1>
+    <View>
+        <Text style={{color:"orangered", fontSize:16, margin: 12}}>Home</Text>
+        <Auth />
     </View>
   );
 }
